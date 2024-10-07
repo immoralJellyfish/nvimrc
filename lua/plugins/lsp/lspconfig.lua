@@ -59,15 +59,16 @@ return {
 				"eslint",
 				"phpactor",
 				"gopls",
-				"pylsp",
 				"lua_ls",
-				"rust_analyzer",
+
 				"clangd",
+				"rust_analyzer",
 				"ocamllsp",
 
 				"dockerls",
-				"bashls",
 				"docker_compose_language_service",
+
+				"bashls",
 
 				"sqlls",
 

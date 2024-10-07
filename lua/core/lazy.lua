@@ -17,9 +17,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 
 		vim.fn.getchar()
 		os.exit(1)
-	else
-		print("Lazy plugin manager installed...")
 	end
+
+	print("Lazy plugin manager installed...")
 end
 
 vim.opt.rtp:prepend(lazypath)
