@@ -34,6 +34,7 @@ vim.opt.incsearch = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.updatetime = 50
+vim.opt.autoread = true
 
 vim.fn.sign_define("DiagnosticSignError", {
 	text = "",
