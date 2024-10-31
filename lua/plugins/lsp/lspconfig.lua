@@ -1,32 +1,3 @@
-local exclude_automatic_setup = { "tsserver", "ts_ls" }
-
-local function table_includes(table, value)
-	for _, v in pairs(table) do
-		if v == value then
-			return true
-		end
-	end
-	return false
-end
-
-local on_attach = function(_, bufnr)
-	local opts = { noremap = true, silent = true, buffer = bufnr }
-
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-	vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-	vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, opts)
-	vim.keymap.set("n", "gR", ":Telescope lsp_references<CR>", opts)
-	vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", opts)
-	vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions<CR>", opts)
-	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-	vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-	vim.keymap.set("n", "<leader>D", ":Telescope diagnostics bufnr=0<CR>", opts)
-	vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
-end
-
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -41,6 +12,34 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local cmp_nvim_lsp_capabilities = cmp_nvim_lsp.default_capabilities()
 		local typescript_tools = require("typescript-tools")
+		local EXCLUDE_SERVER = { "tsserver", "ts_ls" }
+
+		local table_includes = function(table, value)
+			for _, v in pairs(table) do
+				if v == value then
+					return true
+				end
+			end
+			return false
+		end
+
+		local on_attach = function(_, bufnr)
+			local opts = { noremap = true, silent = true, buffer = bufnr }
+
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+			vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
+			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+			vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, opts)
+			vim.keymap.set("n", "gR", ":Telescope lsp_references<CR>", opts)
+			vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", opts)
+			vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions<CR>", opts)
+			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+			vim.keymap.set("n", "<leader>D", ":Telescope diagnostics bufnr=0<CR>", opts)
+			vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+		end
 
 		mason.setup({
 			ui = {
@@ -77,7 +76,7 @@ return {
 			},
 			handlers = {
 				function(server_name)
-					if not table_includes(exclude_automatic_setup, server_name) then
+					if not table_includes(EXCLUDE_SERVER, server_name) then
 						lspconfig[server_name].setup({
 							on_attach = on_attach,
 							capabilities = cmp_nvim_lsp_capabilities,
@@ -109,8 +108,8 @@ return {
 
 		typescript_tools.setup({
 			capabilities = cmp_nvim_lsp_capabilities,
-			on_attach = on_attach,
-			config = function()
+			on_attach = function()
+				on_attach()
 				vim.keymap.set("n", "<leader>tsoi", ":TSToolsOrganizeImport<CR>", { noremap = true, silent = true })
 				vim.keymap.set("n", "<leader>tsru", ":TSToolsRemoveUnused<CR>", { noremap = true, silent = true })
 				vim.keymap.set("n", "<leader>tsmi", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = true })

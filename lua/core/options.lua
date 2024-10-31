@@ -56,3 +56,10 @@ vim.fn.sign_define("DiagnosticSignHint", {
 vim.filetype.add({
 	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "typescriptreact", "javascriptreact" },
+	callback = function()
+		vim.bo.commentstring = "{/* %s */}"
+	end,
+})
