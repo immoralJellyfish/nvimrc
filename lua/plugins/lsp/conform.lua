@@ -76,7 +76,6 @@ return {
 					"beautysh",
 					"php_cs_fixer",
 					"clang-format",
-					"ocamlformat",
 					"yamlfmt",
 				},
 				automatic_installation = true,
@@ -102,26 +101,28 @@ return {
 		opts = {
 			quiet = true,
 			formatters_by_ft = {
+				c = { "clang-format" },
+				cpp = { "clang-format" },
+
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
-				json = { "prettier" },
-				jsonc = { "prettier" },
-				html = { "prettier" },
-				css = { "prettier" },
-				scss = { "prettier" },
-				markdown = { "prettier" },
-				yaml = { "prettier" },
-				c = { "clang-format" },
-				cpp = { "clang-format" },
-				ocaml = { "ocamlformat" },
 				php = { "php_cs_fixer" },
-				lua = { "stylua" },
 				python = { "black" },
+				lua = { "stylua" },
+
 				sh = { "beautysh" },
 				bash = { "beautysh" },
 				zsh = { "beautysh" },
+
+				html = { "prettier" },
+				markdown = { "prettier" },
+				yaml = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				css = { "prettier" },
+				scss = { "prettier" },
 			},
 
 			formatters = {

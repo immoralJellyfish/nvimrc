@@ -62,7 +62,6 @@ return {
 
 				"clangd",
 				"rust_analyzer",
-				"ocamllsp",
 
 				"dockerls",
 				"docker_compose_language_service",
