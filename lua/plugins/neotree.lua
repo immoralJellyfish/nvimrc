@@ -47,11 +47,13 @@ return {
 				["<tab>"] = "open",
 			},
 		},
-		follow_current_file = {
-			enabled = true,
-			leave_dirs_open = false,
-		},
 		filesystem = {
+			follow_current_file = {
+				enabled = true,
+				leave_dirs_open = false,
+			},
+			group_empty_dirs = true,
+			use_libuv_file_watcher = false,
 			commands = {
 				delete = function(state)
 					local inputs = require("neo-tree.ui.inputs")
