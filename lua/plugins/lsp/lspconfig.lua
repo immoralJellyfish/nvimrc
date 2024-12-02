@@ -14,6 +14,23 @@ return {
 		local typescript_tools = require("typescript-tools")
 		local EXCLUDE_SERVER = { "tsserver", "ts_ls" }
 
+		vim.fn.sign_define("DiagnosticSignError", {
+			text = "",
+			texthl = "DiagnosticSignError",
+		})
+		vim.fn.sign_define("DiagnosticSignWarn", {
+			text = "󱧡",
+			texthl = "DiagnosticSignWarn",
+		})
+		vim.fn.sign_define("DiagnosticSignInfo", {
+			text = "󰌵",
+			texthl = "DiagnosticSignInfo",
+		})
+		vim.fn.sign_define("DiagnosticSignHint", {
+			text = "󰛨",
+			texthl = "DiagnosticSignHint",
+		})
+
 		local table_includes = function(table, value)
 			for _, v in pairs(table) do
 				if v == value then
@@ -54,24 +71,16 @@ return {
 		mason_lspconfig.setup({
 			automatic_installation = false,
 			ensure_installed = {
-				"ts_ls",
-				"eslint",
-				"phpactor",
-				"gopls",
-				"lua_ls",
-
 				"clangd",
 				"rust_analyzer",
-
-				"dockerls",
-				"docker_compose_language_service",
-
-				"bashls",
-
-				"sqlls",
-
+				"gopls",
+				"phpactor",
+				"ts_ls",
+				"eslint",
+				"lua_ls",
 				"emmet_ls",
-				"marksman",
+				"cssls",
+				"html",
 			},
 			handlers = {
 				function(server_name)

@@ -35,31 +35,3 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.updatetime = 50
 vim.opt.autoread = true
-
-vim.fn.sign_define("DiagnosticSignError", {
-	text = "",
-	texthl = "DiagnosticSignError",
-})
-vim.fn.sign_define("DiagnosticSignWarn", {
-	text = "󱧡",
-	texthl = "DiagnosticSignWarn",
-})
-vim.fn.sign_define("DiagnosticSignInfo", {
-	text = "󰌵",
-	texthl = "DiagnosticSignInfo",
-})
-vim.fn.sign_define("DiagnosticSignHint", {
-	text = "󰛨",
-	texthl = "DiagnosticSignHint",
-})
-
-vim.filetype.add({
-	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "typescriptreact", "javascriptreact" },
-	callback = function()
-		vim.bo.commentstring = "{/* %s */}"
-	end,
-})

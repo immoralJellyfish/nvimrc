@@ -100,10 +100,14 @@ return {
 		},
 		opts = {
 			quiet = true,
+
+			formatters = {
+				prettier = prettier,
+			},
+
 			formatters_by_ft = {
 				c = { "clang-format" },
 				cpp = { "clang-format" },
-
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				javascript = { "prettier" },
@@ -112,21 +116,18 @@ return {
 				python = { "black" },
 				lua = { "stylua" },
 
+				html = { "prettier" },
+				css = { "prettier" },
+				scss = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				markdown = { "prettier" },
+				yaml = { "prettier" },
+				blade = { "blade-formatter" },
+
 				sh = { "beautysh" },
 				bash = { "beautysh" },
 				zsh = { "beautysh" },
-
-				html = { "prettier" },
-				markdown = { "prettier" },
-				yaml = { "prettier" },
-				json = { "prettier" },
-				jsonc = { "prettier" },
-				css = { "prettier" },
-				scss = { "prettier" },
-			},
-
-			formatters = {
-				prettier = prettier,
 			},
 
 			format_on_save = function(bufnr)
@@ -153,6 +154,7 @@ return {
 				if not slow_format_filetypes[vim.bo[bufnr].filetype] then
 					return
 				end
+
 				return { lsp_format = "fallback" }
 			end,
 		},

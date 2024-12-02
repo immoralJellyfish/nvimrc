@@ -6,12 +6,10 @@ return {
 		"tpope/vim-commentary",
 	},
 	{
-		"j-hui/fidget.nvim",
-	},
-	{
 		"folke/noice.nvim",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
+			"j-hui/fidget.nvim",
 		},
 		lazy = false,
 		opts = {

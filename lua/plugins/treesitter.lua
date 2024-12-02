@@ -10,19 +10,22 @@ return {
 	main = "nvim-treesitter.configs",
 	opts = {
 		auto_install = true,
+		indent = { enable = true },
 		highlight = {
 			enable = true,
 		},
-		indent = { enable = true },
-		autotag = {
-			enable = true,
-		},
 		ensure_installed = {
+			"c",
+			"rust",
+			"go",
+			"php",
 			"javascript",
 			"typescript",
-			"rust",
 			"lua",
-			"vim",
+
+			"blade",
+			"html",
+			"css",
 		},
 		incremental_selection = {
 			enable = true,
@@ -34,4 +37,34 @@ return {
 			},
 		},
 	},
+	config = function(_, opts)
+		local treesitter = require("nvim-treesitter.configs")
+		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+		local tsautotag = require("nvim-ts-autotag")
+
+		vim.filetype.add({
+			pattern = {
+				[".*%.blade%.php"] = "blade",
+				[".*/hypr/.*%.conf"] = "hyprlang",
+			},
+		})
+
+		parser_config.blade = {
+			install_info = {
+				url = "https://github.com/EmranMR/tree-sitter-blade",
+				files = { "src/parser.c" },
+				branch = "main",
+			},
+			filetype = "blade",
+		}
+
+		treesitter.setup(opts)
+		tsautotag.setup({
+			opts = {
+				enable_close = true,
+				enable_rename = true,
+				enable_close_on_slash = false,
+			},
+		})
+	end,
 }
