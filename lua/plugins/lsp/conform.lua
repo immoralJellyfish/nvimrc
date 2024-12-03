@@ -45,14 +45,14 @@ local prettier = {
 			type = "directory",
 		})[1]
 
-		if localPrettierConfig then
-			args = { "--config", localPrettierConfig, "$FILENAME" }
-		elseif globalPrettierConfig and not disableGlobalPrettierConfig then
-			args = { "--config", globalPrettierConfig, "$FILENAME" }
-		end
-
 		if hasTailwindPrettierPlugin then
 			vim.list_extend(args, { "--plugin", "prettier-plugin-tailwindcss" })
+		end
+
+		if localPrettierConfig then
+			args = { "--config", localPrettierConfig, "--stdin-filepath", "$FILENAME" }
+		elseif globalPrettierConfig and not disableGlobalPrettierConfig then
+			args = { "--config", globalPrettierConfig, "--stdin-filepath", "$FILENAME" }
 		end
 
 		return args
@@ -100,14 +100,10 @@ return {
 		},
 		opts = {
 			quiet = true,
-
-			formatters = {
-				prettier = prettier,
-			},
-
 			formatters_by_ft = {
 				c = { "clang-format" },
 				cpp = { "clang-format" },
+
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				javascript = { "prettier" },
@@ -116,18 +112,21 @@ return {
 				python = { "black" },
 				lua = { "stylua" },
 
-				html = { "prettier" },
-				css = { "prettier" },
-				scss = { "prettier" },
-				json = { "prettier" },
-				jsonc = { "prettier" },
-				markdown = { "prettier" },
-				yaml = { "prettier" },
-				blade = { "blade-formatter" },
-
 				sh = { "beautysh" },
 				bash = { "beautysh" },
 				zsh = { "beautysh" },
+
+				html = { "prettier" },
+				markdown = { "prettier" },
+				yaml = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				css = { "prettier" },
+				scss = { "prettier" },
+			},
+
+			formatters = {
+				prettier = prettier,
 			},
 
 			format_on_save = function(bufnr)
@@ -154,7 +153,6 @@ return {
 				if not slow_format_filetypes[vim.bo[bufnr].filetype] then
 					return
 				end
-
 				return { lsp_format = "fallback" }
 			end,
 		},
