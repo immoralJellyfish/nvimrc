@@ -19,36 +19,30 @@ return {
 		},
 		pickers = {
 			find_files = {
-				theme = "dropdown",
+				hidden = true,
+			},
+			git_files = {
 				hidden = true,
 			},
 			live_grep = {
-				theme = "dropdown",
 				hidden = true,
 			},
 		},
 	},
-	config = function(_, opts)
-		local telescope = require("telescope")
+	init = function()
 		local builtin = require("telescope.builtin")
 
-		vim.keymap.set("n", "<leader>e", function()
-			builtin.find_files({
-				find_command = { "rg", "--files", "--hidden", "--ignore", "-u", "-g", "!.git" },
-				hidden = true,
-			})
-		end, {
-			silent = true,
-			noremap = true,
-		})
-
+		vim.keymap.set("n", "<leader>e", builtin.find_files, { silent = true, noremap = true })
 		vim.keymap.set("n", "<leader>pg", builtin.git_files, { silent = true, noremap = true })
-
-		vim.keymap.set("n", "<leader>ps", builtin.live_grep, {
-			silent = true,
-			noremap = true,
-		})
-
-		telescope.setup(opts)
+		vim.keymap.set("n", "<leader>ps", builtin.live_grep, { silent = true, noremap = true })
+		vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
+		vim.keymap.set("n", "<leader>pws", function()
+			local word = vim.fn.expand("<cword>")
+			builtin.grep_string({ search = word })
+		end)
+		vim.keymap.set("n", "<leader>pWs", function()
+			local word = vim.fn.expand("<cWORD>")
+			builtin.grep_string({ search = word })
+		end)
 	end,
 }

@@ -1,6 +1,6 @@
 return {
 	"tpope/vim-fugitive",
-	config = function()
+	init = function()
 		local opts = { silent = true, noremap = true }
 
 		vim.keymap.set("n", "<leader>ga", ":Git<CR>", opts)

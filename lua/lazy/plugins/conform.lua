@@ -4,6 +4,7 @@ local prettier = {
 	require_cwd = false,
 	args = function(_, ctx)
 		local prettier_roots = {
+			".editroconfig",
 			".prettierrc",
 			".prettierrc.json",
 			".prettierrc.yaml",
@@ -63,6 +64,7 @@ return {
 	{
 		"nvimtools/none-ls.nvim",
 		dependencies = {
+			"williamboman/mason.nvim",
 			"jay-babu/mason-null-ls.nvim",
 		},
 		config = function()
@@ -76,7 +78,6 @@ return {
 					"beautysh",
 					"php_cs_fixer",
 					"clang-format",
-					"yamlfmt",
 				},
 				automatic_installation = true,
 			})

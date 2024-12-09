@@ -5,7 +5,6 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		"windwp/nvim-ts-autotag",
 	},
 	main = "nvim-treesitter.configs",
 	opts = {
@@ -40,7 +39,6 @@ return {
 	config = function(_, opts)
 		local treesitter = require("nvim-treesitter.configs")
 		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-		local tsautotag = require("nvim-ts-autotag")
 
 		vim.filetype.add({
 			pattern = {
@@ -59,12 +57,5 @@ return {
 		}
 
 		treesitter.setup(opts)
-		tsautotag.setup({
-			opts = {
-				enable_close = true,
-				enable_rename = true,
-				enable_close_on_slash = false,
-			},
-		})
 	end,
 }

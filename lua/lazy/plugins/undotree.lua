@@ -1,6 +1,6 @@
 return {
 	"mbbill/undotree",
-	config = function()
+	init = function()
 		vim.g.undotree_WindowLayout = 3
 		vim.g.undotree_SplitWidth = 36
 		vim.g.undotree_SetFocusWhenToggle = 1

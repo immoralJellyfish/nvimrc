@@ -1,4 +1,4 @@
-local cmp_kinds = {
+local CMP_KINDS = {
 	Text = "󰉿",
 	Method = "󰆧",
 	Function = "󰊕",
@@ -48,23 +48,22 @@ return {
 				end,
 			},
 			formatting = {
+				fields = { "abbr", "kind" },
 				format = function(_, vim_item)
-					vim_item.kind = (cmp_kinds[vim_item.kind] .. "  " .. vim_item.kind) or ""
+					vim_item.kind = (CMP_KINDS[vim_item.kind] .. "  " .. vim_item.kind) or ""
 					vim_item.symbol = vim_item.kind
 					return vim_item
 				end,
-
-				fields = { "abbr", "kind" },
 			},
 			mapping = {
 				["<C-y>"] = cmp.mapping.confirm({ select = false }),
 				["<CR>"] = cmp.mapping.confirm({ select = false }),
+				["<C-p>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
+				["<C-n>"] = cmp.mapping.select_next_item({ behavior = "select" }),
 				["<C-e>"] = cmp.mapping.abort(),
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<Up>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
 				["<Down>"] = cmp.mapping.select_next_item({ behavior = "select" }),
-				["<C-p>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
-				["<C-n>"] = cmp.mapping.select_next_item({ behavior = "select" }),
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
