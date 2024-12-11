@@ -89,7 +89,7 @@ return {
 			hijack_netrw_behavior = "open_current",
 			group_empty_dirs = true,
 			use_libuv_file_watcher = false,
-			ufollow_current_file = {
+			follow_current_file = {
 				enabled = true,
 				leave_dirs_open = false,
 			},
