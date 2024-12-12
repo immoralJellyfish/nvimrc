@@ -5,7 +5,7 @@ return {
 		options = {
 			theme = "catppuccin",
 			globalstatus = true,
-			component_separators = "",
+			component_separators = "|",
 			section_separators = "",
 			disabled_filetypes = {
 				statusline = { "lazy", "undotree", "fugitive", "mason", "diff", "TelescopePrompt", "neo-tree" },
