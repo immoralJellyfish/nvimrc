@@ -1,36 +1,6 @@
-local EXCLUDE_SERVER = { "tsserver", "ts_ls" }
-
-local table_includes = function(table, value)
-	for _, v in pairs(table) do
-		if v == value then
-			return true
-		end
-	end
-	return false
-end
-
-local on_attach = function(_, bufnr)
-	local opts = { noremap = true, silent = true, buffer = bufnr }
-
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-	vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
-	vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-	vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-	vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-	vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-	vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-	vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
-end
-
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"pmizio/typescript-tools.nvim",
-	},
+	event = "BufEnter",
 	init = function()
 		vim.fn.sign_define("DiagnosticSignError", {
 			text = "",
@@ -50,8 +20,8 @@ return {
 		})
 	end,
 	config = function()
+		local EXCLUDE_SERVER = { "tsserver", "ts_ls" }
 		local lspconfig = require("lspconfig")
-		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local typescript_tools = require("typescript-tools")
@@ -63,32 +33,31 @@ return {
 			cmp_nvim_lsp.default_capabilities()
 		)
 
-		mason.setup({
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
-				},
-			},
-		})
+		local table_includes = function(table, value)
+			for _, v in pairs(table) do
+				if v == value then
+					return true
+				end
+			end
+			return false
+		end
+
+		local on_attach = function(_, bufnr)
+			local opts = { noremap = true, silent = true, buffer = bufnr }
+
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+			vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
+			vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
+			vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+			vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+			vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+			vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+		end
 
 		mason_lspconfig.setup({
-			automatic_installation = false,
-			ensure_installed = {
-				"clangd",
-				"rust_analyzer",
-				"gopls",
-				"phpactor",
-				"intelephense",
-				"ts_ls",
-				"eslint",
-				"lua_ls",
-
-				"emmet_ls",
-				"cssls",
-				"html",
-			},
 			handlers = {
 				function(server_name)
 					if not table_includes(EXCLUDE_SERVER, server_name) then
@@ -99,7 +68,7 @@ return {
 						})
 					end
 				end,
-				["lua_ls"] = function()
+				lua_ls = function()
 					lspconfig.lua_ls.setup({
 						capabilities = capabilities,
 						on_attach = on_attach,

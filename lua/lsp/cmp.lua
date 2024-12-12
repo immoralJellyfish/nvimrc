@@ -1,31 +1,3 @@
-local CMP_KINDS = {
-	Text = "󰉿",
-	Method = "󰆧",
-	Function = "󰊕",
-	Constructor = "",
-	Field = "󰜢",
-	Variable = "󰀫",
-	Class = "󰠱",
-	Interface = "",
-	Module = "",
-	Property = "󰜢",
-	Unit = "󰑭",
-	Value = "󰎠",
-	Enum = "",
-	Keyword = "󰌋",
-	Snippet = "",
-	Color = "󰏘",
-	File = "󰈙",
-	Reference = "󰈇",
-	Folder = "󰉋",
-	EnumMember = "",
-	Constant = "󰏿",
-	Struct = "󰙅",
-	Event = "",
-	Operator = "󰆕",
-	TypeParameter = "",
-}
-
 return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
@@ -40,6 +12,33 @@ return {
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local tailwind_colorizer = require("tailwindcss-colorizer-cmp")
+		local CMP_KINDS = {
+			Text = "󰉿",
+			Method = "󰆧",
+			Function = "󰊕",
+			Constructor = "",
+			Field = "󰜢",
+			Variable = "󰀫",
+			Class = "󰠱",
+			Interface = "",
+			Module = "",
+			Property = "󰜢",
+			Unit = "󰑭",
+			Value = "󰎠",
+			Enum = "",
+			Keyword = "󰌋",
+			Snippet = "",
+			Color = "󰏘",
+			File = "󰈙",
+			Reference = "󰈇",
+			Folder = "󰉋",
+			EnumMember = "",
+			Constant = "󰏿",
+			Struct = "󰙅",
+			Event = "",
+			Operator = "󰆕",
+			TypeParameter = "",
+		}
 
 		cmp.setup({
 			snippet = {

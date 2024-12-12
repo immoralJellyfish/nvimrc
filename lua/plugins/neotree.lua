@@ -31,14 +31,14 @@ end
 
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	lazy = false,
-	keys = {
-		{ "<leader>pf", ":Neotree toggle<CR>", silent = true, noremap = true },
-	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
+	},
+	event = { "BufEnter" },
+	keys = {
+		{ "<leader>pf", ":Neotree toggle<CR>", silent = true, noremap = true },
 	},
 	init = function()
 		vim.g.netrw_browse_split = 0
