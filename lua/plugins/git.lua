@@ -1,6 +1,6 @@
 return {
 	{
-		"lewis6993/gitsigns.nvim",
+		"lewis6991/gitsigns.nvim",
 		opts = {
 			signs = {
 				add = { text = "│" },

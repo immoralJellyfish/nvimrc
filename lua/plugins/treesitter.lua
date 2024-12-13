@@ -1,12 +1,11 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPre", "BufNewFile" },
-	build = ":TSUpdate",
+	main = "nvim-treesitter.configs",
+	build = ":TSupdate",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
-	main = "nvim-treesitter.configs",
 	opts = {
 		auto_install = true,
 		indent = { enable = true },
