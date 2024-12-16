@@ -38,7 +38,7 @@ return {
 	},
 	event = { "BufEnter" },
 	keys = {
-		{ "<leader>pf", ":Neotree toggle<CR>", silent = true, noremap = true },
+		{ "<leader>pv", ":Neotree toggle<CR>", silent = true, noremap = true },
 	},
 	init = function()
 		vim.g.netrw_browse_split = 0

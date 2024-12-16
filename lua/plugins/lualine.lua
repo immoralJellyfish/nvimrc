@@ -7,12 +7,12 @@ return {
 			globalstatus = true,
 			component_separators = "|",
 			section_separators = "",
+			ignore_focus = { "TelescopePrompt", "neo-tree", "toggleterm" },
+			extensions = { "lazy", "nvim-tree", "toggleterm" },
 			disabled_filetypes = {
 				statusline = { "lazy", "undotree", "fugitive", "mason", "diff", "TelescopePrompt", "neo-tree" },
 				winbar = { "lazy", "undotree", "fugitive", "mason", "diff", "TelescopePrompt", "neo-tree" },
 			},
-			ignore_focus = { "TelescopePrompt", "neo-tree", "toggleterm" },
-			extensions = { "lazy", "nvim-tree", "toggleterm" },
 		},
 	},
 }
