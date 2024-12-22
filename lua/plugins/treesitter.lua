@@ -11,6 +11,7 @@ return {
 		indent = { enable = true },
 		highlight = {
 			enable = true,
+			additional_vim_regex_highlighting = false,
 		},
 		ensure_installed = {
 			"c",
