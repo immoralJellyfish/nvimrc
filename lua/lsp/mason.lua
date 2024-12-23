@@ -3,6 +3,7 @@ return {
 	lazy = false,
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig",
 		"nvimtools/none-ls.nvim",
 		"jay-babu/mason-null-ls.nvim",
 		"pmizio/typescript-tools.nvim",

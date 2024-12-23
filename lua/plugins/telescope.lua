@@ -5,32 +5,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
-	opts = {
-		defaults = {
-			prompt_prefix = " 󰭎  ",
-			selection_caret = " ",
-			path_display = { "absolute" },
-			sorting_strategy = "ascending",
-			layout_config = {
-				height = 0.8,
-				width = 0.7,
-				prompt_position = "top",
-			},
-			mappings = {
-				n = {
-					["<C-t>"] = "nop",
-				},
-				i = {
-					["<C-t>"] = "nop",
-				},
-			},
-		},
-		pickers = {
-			live_grep = {
-				hidden = true,
-			},
-		},
-	},
 	keys = function()
 		local builtin = require("telescope.builtin")
 
@@ -57,4 +31,30 @@ return {
 			},
 		}
 	end,
+	opts = {
+		defaults = {
+			prompt_prefix = " 󰭎  ",
+			selection_caret = " ",
+			path_display = { "absolute" },
+			sorting_strategy = "ascending",
+			layout_config = {
+				height = 0.8,
+				width = 0.7,
+				prompt_position = "top",
+			},
+			mappings = {
+				n = {
+					["<C-t>"] = "nop",
+				},
+				i = {
+					["<C-t>"] = "nop",
+				},
+			},
+		},
+		pickers = {
+			live_grep = {
+				hidden = true,
+			},
+		},
+	},
 }
