@@ -85,22 +85,20 @@ return {
 
 		insert_left({
 			function()
-				return "▊"
+				return "▍"
 			end,
 			color = function()
 				return { fg = colors_mode[vim.fn.mode()] }
 			end,
-			padding = { left = 0, right = 1 },
+			padding = { right = 0, left = 0 },
 		})
 
 		insert_left({
-			function()
-				return "󰼁 " .. lualine_mode.get_mode()
-			end,
+			lualine_mode.get_mode,
 			color = function()
 				return { fg = colors_mode[vim.fn.mode()] }
 			end,
-			padding = { left = 0 },
+			icon = "󰼁",
 		})
 
 		insert_left({
@@ -196,12 +194,12 @@ return {
 
 		insert_right({
 			function()
-				return "▊"
+				return "▐"
 			end,
 			color = function()
 				return { fg = colors_mode[vim.fn.mode()] }
 			end,
-			padding = { left = 1, right = 0 },
+			padding = { right = 0, left = 0 },
 		})
 
 		lualine.setup(config)
