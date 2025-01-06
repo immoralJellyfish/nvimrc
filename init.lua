@@ -1,4 +1,7 @@
 require("./options")
 require("./keymap")
 require("./autocommand")
-require("./lazy")
+
+if not vim.g.vscode then
+	require("./lazy")
+end
