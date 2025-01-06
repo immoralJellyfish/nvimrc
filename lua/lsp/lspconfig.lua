@@ -1,6 +1,14 @@
 return {
 	"neovim/nvim-lspconfig",
 	event = "BufEnter",
+	dependencies = {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig",
+		"nvimtools/none-ls.nvim",
+		"jay-babu/mason-null-ls.nvim",
+		"pmizio/typescript-tools.nvim",
+	},
 	init = function()
 		vim.fn.sign_define("DiagnosticSignError", {
 			text = "",
