@@ -9,9 +9,17 @@ return {
 
 		return {
 			{ "<C-p>", builtin.find_files, silent = true, noremap = true },
-			{ "<leader>pf", builtin.git_files, silent = true, noremap = true },
+			{ "<leader>pg", builtin.git_files, silent = true, noremap = true },
 			{ "<leader>ps", builtin.live_grep, silent = true, noremap = true },
 			{ "<leader>vh", builtin.help_tags, silent = true, noremap = true },
+			{
+				"<leader>ph",
+				function()
+					builtin.find_files({ hidden = true })
+				end,
+				silent = true,
+				noremap = true,
+			},
 			{
 				"<leader>pws",
 				function()
