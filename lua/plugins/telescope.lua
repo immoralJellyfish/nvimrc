@@ -9,11 +9,10 @@ return {
 
 		return {
 			{ "<C-p>", builtin.find_files, silent = true, noremap = true },
-			{ "<C-g>", builtin.git_files, silent = true, noremap = true },
+			{ "<leader>pf", builtin.git_files, silent = true, noremap = true },
 			{ "<leader>ps", builtin.live_grep, silent = true, noremap = true },
-			{ "<leader>vh", builtin.help_tags, silent = true, noremap = true },
 			{
-				"<leader>pf",
+				"<leader>h",
 				function()
 					builtin.find_files({ hidden = true })
 				end,
@@ -35,6 +34,8 @@ return {
 					local word = vim.fn.expand("<cWORD>")
 					builtin.grep_string({ search = word })
 				end,
+				silent = true,
+				noremap = true,
 			},
 		}
 	end,
@@ -61,6 +62,9 @@ return {
 		pickers = {
 			live_grep = {
 				hidden = true,
+			},
+			find_files = {
+				find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 			},
 		},
 	},
