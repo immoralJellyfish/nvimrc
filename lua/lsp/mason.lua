@@ -39,9 +39,10 @@ return {
 			automatic_installation = true,
 			ensure_installed = {
 				"prettier",
+				"blade-formatter",
+				"php_cs_fixer",
 				"stylua",
 				"beautysh",
-				"php_cs_fixer",
 				"clang-format",
 				"shellcheck",
 			},

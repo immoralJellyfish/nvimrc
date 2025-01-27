@@ -100,6 +100,7 @@ return {
 			jsonc = { "prettier" },
 			css = { "prettier" },
 			scss = { "prettier" },
+			blade = { "blade-formatter" },
 		},
 		format_on_save = function(bufnr)
 			local bufname = vim.api.nvim_buf_get_name(bufnr)

@@ -76,6 +76,30 @@ return {
 						})
 					end
 				end,
+				emmet_ls = function()
+					lspconfig.emmet_ls.setup({
+						capabilities = capabilities,
+						on_attach = on_attach,
+						filetypes = {
+							"astro",
+							"css",
+							"eruby",
+							"html",
+							"htmldjango",
+							"javascriptreact",
+							"less",
+							"pug",
+							"sass",
+							"scss",
+							"svelte",
+							"typescriptreact",
+							"vue",
+							"htmlangular",
+							"htmlangular",
+							"blade",
+						},
+					})
+				end,
 				lua_ls = function()
 					lspconfig.lua_ls.setup({
 						capabilities = capabilities,

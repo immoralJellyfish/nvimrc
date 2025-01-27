@@ -2,6 +2,7 @@ local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
 
+vim.keymap.set("i", "<M-leader>", "<ESC>", opts)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
